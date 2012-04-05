@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/repos/!svn/ver/1857/jasig/classifieds_portlet/trunk
+END
+.classpath
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/repos/!svn/ver/1857/jasig/classifieds_portlet/trunk/.classpath
+END
+.project
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/repos/!svn/ver/1857/jasig/classifieds_portlet/trunk/.project
+END
+.tomcatplugin
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/repos/!svn/ver/1857/jasig/classifieds_portlet/trunk/.tomcatplugin
+END
+pom.xml
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/repos/!svn/ver/1857/jasig/classifieds_portlet/trunk/pom.xml
+END
+readme.txt
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/repos/!svn/ver/1857/jasig/classifieds_portlet/trunk/readme.txt
+END

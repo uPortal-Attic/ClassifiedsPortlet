@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/repos/!svn/ver/1857/jasig/classifieds_portlet/trunk/src/main/java/edu/fortlewis/portlet/ClassifiedsPortlet/service
+END
+AdGroomer.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/svn/repos/!svn/ver/1857/jasig/classifieds_portlet/trunk/src/main/java/edu/fortlewis/portlet/ClassifiedsPortlet/service/AdGroomer.java
+END
+IAdminGroupService.java
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/svn/repos/!svn/ver/1857/jasig/classifieds_portlet/trunk/src/main/java/edu/fortlewis/portlet/ClassifiedsPortlet/service/IAdminGroupService.java
+END
+CategoryServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/svn/repos/!svn/ver/1857/jasig/classifieds_portlet/trunk/src/main/java/edu/fortlewis/portlet/ClassifiedsPortlet/service/CategoryServiceImpl.java
+END
+HeadingService.java
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/svn/repos/!svn/ver/1857/jasig/classifieds_portlet/trunk/src/main/java/edu/fortlewis/portlet/ClassifiedsPortlet/service/HeadingService.java
+END
+HeadingServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/svn/repos/!svn/ver/1857/jasig/classifieds_portlet/trunk/src/main/java/edu/fortlewis/portlet/ClassifiedsPortlet/service/HeadingServiceImpl.java
+END
+AdService.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/svn/repos/!svn/ver/1857/jasig/classifieds_portlet/trunk/src/main/java/edu/fortlewis/portlet/ClassifiedsPortlet/service/AdService.java
+END
+AdminGroupService.java
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/svn/repos/!svn/ver/1857/jasig/classifieds_portlet/trunk/src/main/java/edu/fortlewis/portlet/ClassifiedsPortlet/service/AdminGroupService.java
+END
+ConfigService.java
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/svn/repos/!svn/ver/1857/jasig/classifieds_portlet/trunk/src/main/java/edu/fortlewis/portlet/ClassifiedsPortlet/service/ConfigService.java
+END
+AdServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/svn/repos/!svn/ver/1857/jasig/classifieds_portlet/trunk/src/main/java/edu/fortlewis/portlet/ClassifiedsPortlet/service/AdServiceImpl.java
+END
+ConfigServiceImpl.java
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/svn/repos/!svn/ver/1857/jasig/classifieds_portlet/trunk/src/main/java/edu/fortlewis/portlet/ClassifiedsPortlet/service/ConfigServiceImpl.java
+END
+CategoryService.java
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/svn/repos/!svn/ver/1857/jasig/classifieds_portlet/trunk/src/main/java/edu/fortlewis/portlet/ClassifiedsPortlet/service/CategoryService.java
+END

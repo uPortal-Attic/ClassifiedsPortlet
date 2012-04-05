@@ -1,0 +1,83 @@
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/repos/!svn/ver/1857/jasig/classifieds_portlet/trunk/src/main/webapp/WEB-INF/jsp
+END
+categories.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/repos/!svn/ver/1857/jasig/classifieds_portlet/trunk/src/main/webapp/WEB-INF/jsp/categories.jsp
+END
+submitCategoryForm.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/repos/!svn/ver/1857/jasig/classifieds_portlet/trunk/src/main/webapp/WEB-INF/jsp/submitCategoryForm.jsp
+END
+invalid.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/repos/!svn/ver/1857/jasig/classifieds_portlet/trunk/src/main/webapp/WEB-INF/jsp/invalid.jsp
+END
+submitHeadingForm.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/repos/!svn/ver/1857/jasig/classifieds_portlet/trunk/src/main/webapp/WEB-INF/jsp/submitHeadingForm.jsp
+END
+editHeadings.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/repos/!svn/ver/1857/jasig/classifieds_portlet/trunk/src/main/webapp/WEB-INF/jsp/editHeadings.jsp
+END
+mainMenu.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/repos/!svn/ver/1857/jasig/classifieds_portlet/trunk/src/main/webapp/WEB-INF/jsp/mainMenu.jsp
+END
+editCategories.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/repos/!svn/ver/1857/jasig/classifieds_portlet/trunk/src/main/webapp/WEB-INF/jsp/editCategories.jsp
+END
+submitAdForm.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/repos/!svn/ver/1857/jasig/classifieds_portlet/trunk/src/main/webapp/WEB-INF/jsp/submitAdForm.jsp
+END
+submitHeadingSuccess.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/repos/!svn/ver/1857/jasig/classifieds_portlet/trunk/src/main/webapp/WEB-INF/jsp/submitHeadingSuccess.jsp
+END
+adminMenu.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/repos/!svn/ver/1857/jasig/classifieds_portlet/trunk/src/main/webapp/WEB-INF/jsp/adminMenu.jsp
+END
+myAds.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/repos/!svn/ver/1857/jasig/classifieds_portlet/trunk/src/main/webapp/WEB-INF/jsp/myAds.jsp
+END
+submitConfigForm.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/repos/!svn/ver/1857/jasig/classifieds_portlet/trunk/src/main/webapp/WEB-INF/jsp/submitConfigForm.jsp
+END
+include.jsp
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/repos/!svn/ver/1857/jasig/classifieds_portlet/trunk/src/main/webapp/WEB-INF/jsp/include.jsp
+END
