@@ -8,9 +8,11 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import edu.fortlewis.portlet.ClassifiedsPortlet.domain.Ad;
+import edu.fortlewis.portlet.ClassifiedsPortlet.domain.Ad;
 import edu.fortlewis.portlet.ClassifiedsPortlet.service.AdService;
 import edu.fortlewis.portlet.ClassifiedsPortlet.domain.PortletUserPropertiesResolver;
 import edu.fortlewis.portlet.ClassifiedsPortlet.domain.UserProperties;
+import java.util.List;
 import javax.portlet.ActionResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -61,7 +63,11 @@ public class MyAdsController
     			if (request.getRemoteUser() != null) 
     			{
     				UserProperties user = userPropertiesResolver.getProperties(request);
-    				List <Ad> ads = adService.getAdsByUserId(request.getRemoteUser());
+                                List <Ad> ads;
+                                if(user.getIsAdmin())
+                                    ads = adService.getAdsForAdmin();
+                                else
+                                    ads = adService.getAdsByUserId(request.getRemoteUser());
      				model.addAttribute("ads", ads);
     			}
     			return "myAds";
