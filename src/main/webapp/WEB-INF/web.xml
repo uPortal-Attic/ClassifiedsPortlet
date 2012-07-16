@@ -39,6 +39,23 @@
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
+
+<!-- uportal debug -->
+    <servlet>
+    <servlet-name>ClassifiedsPortlet</servlet-name>
+    <servlet-class>org.apache.pluto.container.driver.PortletServlet</servlet-class>
+    <init-param>
+    <param-name>portlet-name</param-name>
+    <param-value>ClassifiedsPortlet</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+    <servlet-name>ClassifiedsPortlet</servlet-name>
+    <url-pattern>/PlutoInvoker/ClassifiedsPortlet</url-pattern>
+    </servlet-mapping>
+<!-- end uportal debug -->
     
     <!-- [INSERT JSPC FRAGMENT HERE] -->
    
