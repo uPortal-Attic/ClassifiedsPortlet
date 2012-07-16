@@ -1,2 +1,3 @@
-src/main/webapp/WEB-INF/context/applicationContext.xml
 pom.xml
+
+src/main/webapp/WEB-INF/context/applicationContext.xml
