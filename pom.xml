@@ -10,8 +10,6 @@
     <version>0.0.1</version>
     <name>Classifieds Portlet</name>
     <description>Classifieds Portlet.</description>
-<<<<<<< HEAD
-=======
 
     <repositories>
         <repository>
@@ -20,7 +18,6 @@
             <url>http://tools.gbif.org/maven/repository/</url>
         </repository>
     </repositories>
->>>>>>> 89f06f7... Fixed POM file to compile OOB
     
      <properties>
      	<org.springframework.webflow.version>2.0.5.RELEASE</org.springframework.webflow.version>
