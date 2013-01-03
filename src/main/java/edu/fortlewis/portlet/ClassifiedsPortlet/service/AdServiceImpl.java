@@ -79,7 +79,17 @@ public class AdServiceImpl extends HibernateDaoSupport implements AdService{
 	    
 	   return (List<Ad>) getHibernateTemplate().execute(callback);
 	}
-	
+
+        // Gets all active Ads for the Admin to edit/delete
+        public List<Ad> getAdsForAdmin() {
+                try {
+			return (List<Ad>) getHibernateTemplate().find("from Ad order by startDate desc ");
+		} catch (HibernateException ex) {
+			throw convertHibernateAccessException(ex);
+		}
+        }
+
+
 
 	public List<Ad> getAdsByUserId(String userid)
 	{
