@@ -10,6 +10,14 @@
     <version>0.0.1</version>
     <name>Classifieds Portlet</name>
     <description>Classifieds Portlet.</description>
+
+    <repositories>
+        <repository>
+            <id>gbif</id>
+            <name>tools-gbif</name>
+            <url>http://tools.gbif.org/maven/repository/</url>
+        </repository>
+    </repositories>
     
      <properties>
      	<org.springframework.webflow.version>2.0.5.RELEASE</org.springframework.webflow.version>
@@ -43,14 +51,14 @@
 		</dependency>
     
      
-        <dependency>
+      <!--    <dependency>
             <groupId>com.oracle</groupId>
             <artifactId>ojdbc14</artifactId>
             <version>10.2.0.3.0</version>
         </dependency>
    
    
-     <!-- 
+    
      	<dependency>
             <groupId>net.sourceforge</groupId>
             <artifactId>jtds</artifactId>
@@ -128,9 +136,9 @@
             <scope>compile</scope>
         </dependency>
          <dependency>
-            <groupId>json-taglib</groupId>
+            <groupId>atg</groupId>
             <artifactId>json-taglib</artifactId>
-            <version>4.1</version>
+            <version>0.4.1</version>
             <type>jar</type>
             <scope>compile</scope>
         </dependency>
