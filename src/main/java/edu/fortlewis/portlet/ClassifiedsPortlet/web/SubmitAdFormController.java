@@ -40,6 +40,7 @@ import edu.fortlewis.portlet.ClassifiedsPortlet.domain.SubmitAdFormValidator;
  */
 @Controller
 @RequestMapping("VIEW")
+@SessionAttributes("ad")
 public class SubmitAdFormController {
 
 	private static Log log = LogFactory.getLog(SubmitAdFormController.class);
@@ -116,7 +117,10 @@ public class SubmitAdFormController {
 	    if (!result.hasErrors() && ad != null){
 	    	
 	    		if (request.getRemoteUser() != null) {
-	    			ad.setUserid(request.getRemoteUser());
+	    			if (ad.getUserid() == null)
+	    			{
+	    				ad.setUserid(request.getRemoteUser());
+	    			}
 	    			ad.setStatus(0);
 	    			adService.processAd(ad);
 	    		}
