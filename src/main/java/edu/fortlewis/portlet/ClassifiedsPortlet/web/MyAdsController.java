@@ -38,7 +38,12 @@ public class MyAdsController
    	if (request.getRemoteUser() != null) 
    	{
     	UserProperties user = userPropertiesResolver.getProperties(request);
-    	List <Ad> ads = adService.getAdsByUserId(request.getRemoteUser());
+    	List <Ad> ads;
+        if(user.getIsAdmin())
+            ads = adService.getAdsForAdmin();
+        else
+            ads = adService.getAdsByUserId(request.getRemoteUser());
+
      
     	model.addAttribute("ads", ads);
   	}
