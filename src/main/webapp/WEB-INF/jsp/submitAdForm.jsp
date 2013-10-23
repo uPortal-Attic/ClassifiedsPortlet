@@ -2,103 +2,17 @@
 <jsp:directive.include file="/WEB-INF/jsp/include.jsp"/>
 <link rel="stylesheet" href="<c:url value="/css/classifieds.css"/>" type="text/css"></link>
 
-
-
 <script src="/ResourceServingWebapp/rs/jquery/1.3.1/jquery-1.3.1.min.js" type="text/javascript"></script>
-<script type="text/javascript" src="/ResourceServingWebapp/rs/jqueryui/1.6rc6/jquery-ui-1.6rc6.min.js"></script> 
-<link rel="stylesheet" href="<c:url value="/ResourceServingWebapp/rs/jqueryui/1.6rc6/theme/smoothness/ui.all.css"/>" type="text/css"></link> 
-
-
+<script src="/ResourceServingWebapp/rs/jqueryui/1.6rc6/jquery-ui-1.6rc6.min.js" type="text/javascript"></script>
+<link rel="stylesheet" href="/ResourceServingWebapp/rs/jqueryui/1.6rc6/theme/smoothness/ui.all.css" type="text/css"></link>
 <c:set var="n"><portlet:namespace/></c:set>
 
-
 <script type="text/javascript">
+	var myPortletName = myPortletName || {};
+	myPortletName["${n}"] = myPortletName["${n}"] || {};
+	myPortletName["${n}"].jQuery = jQuery.noConflict(true); 
+</script>	
 
-	var ${n}_portletName = ${n}_portletName || {}; 
-	${n}_portletName.jQuery = jQuery.noConflict(true); 
-	var $ = ${n}_portletName.jQuery;
-
-	var futureDate = "";
-	
-    function validateMyForm(form)
-    {	
-    	var start = form.startDate.value;
-    	var mm = 0;
-			
-		if (start.charAt(0) == "0")
-		{	
-			mm = parseInt(start.substring(1,2)) - 1;
-		}
-		else
-		{	
-			
-			mm = parseInt(start.substring(0,1)) - 1;
-		}
-
-		var startDate = new Date();
-			
-	   	startDate.setFullYear(start.substring(6,10),mm.toString(),start.substring(3,5));
-
-		var  today = new Date();
-
-		if ( startDate > today)
-		{
-			var startMonth = startDate.getMonth() + 1;
-
-			 $("#<portlet:namespace/>confirm").html("<p></p><p>Your Ad will not be visible on the Classifieds until the start date of " + startMonth + "/" + startDate.getDate() + "/" + startDate.getFullYear() + ". If you would like to have the Ad appear sooner please re-enter the start date.</p><p> Do you want to continue?</p>"); 
-			 $("#<portlet:namespace/>confirm").show();  
-			 $("#<portlet:namespace/>confirm").dialog("open"); 
-
-			 return false;  
-		}
-
-	   	return true;
-    }
-
-$(function(){
-	$("#startDatepicker").datepicker({minDate: '0d', maxDate: '60d'});
-	$("#endDatepicker").datepicker({minDate: '1d', maxDate: '120d'});
-});
-
-$(document).ready(function(){
-	$("#<portlet:namespace/>confirm").dialog({
-		buttons: { "Cancel": function() { $(this).dialog("close"); }, "OK": function() { $(this).dialog("close"); document.myform.submit();} },
-		autoOpen: false,
-		bgiframe: true,
-		height: 180,
-		width: 470,
-		hide: 'normal',
-		position: 'center',
-		resizable: true,
-		modal: true
-	});
-});
-
-
-$(document).ready(function(){
-	$("#<portlet:namespace/>dialog").dialog({
-		buttons: { "Close": function() { $(this).dialog("close"); } },
-		autoOpen: false,
-		bgiframe: true,
-		height: 510,
-		width: 510,
-		hide: 'normal',
-		position: 'center',
-		resizable: true,
-		modal: true
-	});
-});
-
-$(document).ready(function() {
-     $("#<portlet:namespace/>harassmentLink").click(function() 	{
-    	 $("#<portlet:namespace/>dialog").show();  
-		$("#<portlet:namespace/>dialog").dialog("open");        
-     });
-});
-
-	
-
-</script>
 <div id="<portlet:namespace/>confirm"  class="hidden" title="Fort Lewis Classifieds">
 </div>
 
@@ -117,7 +31,7 @@ $(document).ready(function() {
 	<portlet:param name="action" value="addAd"/>
 </portlet:actionURL>
 
- <form:form  name="myform" method="POST" commandName="ad" action="${postUrl}" onsubmit="return validateMyForm(this)" >
+ <form:form  name="myform" method="POST" commandName="ad" action="${postUrl}" onsubmit="return validateMyForm(this, myPortletName['${n}'].jQuery)" >
  
  <form:hidden path="id" />
 
@@ -204,3 +118,82 @@ $(document).ready(function() {
 </table>
 </form:form>
 
+<script type="text/javascript">
+
+	function validateMyForm(form, $)
+    {	
+    	var start = form.startDate.value;
+    	var mm = 0;
+			
+		if (start.charAt(0) == "0")
+		{	
+			mm = parseInt(start.substring(1,2)) - 1;
+		}
+		else
+		{	
+			
+			mm = parseInt(start.substring(0,2)) - 1;
+		}
+
+		var startDate = new Date();
+	   	startDate.setFullYear(start.substring(6,10),mm.toString(),start.substring(3,5));
+
+		var  today = new Date();
+
+		if ( startDate > today)
+		{
+			var startMonth = startDate.getMonth() + 1;
+			
+			 $("#<portlet:namespace/>confirm").html("<p></p><p>Your Ad will not be visible on the Classifieds until the start date of " + startMonth + "/" + startDate.getDate() + "/" + startDate.getFullYear() + ". If you would like to have the Ad appear sooner please re-enter the start date.</p><p> Do you want to continue?</p>"); 
+			 $("#<portlet:namespace/>confirm").show();  
+			 $("#<portlet:namespace/>confirm").dialog("open"); 
+			 return false;  
+		}
+
+	   	return true;
+    }
+
+(function($){
+
+	$("#<portlet:namespace/>confirm").dialog({
+		buttons: { "Cancel": function() { $(this).dialog("close"); }, "OK": function() { $(this).dialog("close"); document.myform.submit();} },
+		autoOpen: false,
+		bgiframe: true,
+		height: 220,
+		width: 470,
+		hide: 'normal',
+		position: 'center',
+		resizable: true,
+		modal: true
+	});
+
+	$("#<portlet:namespace/>dialog").dialog({
+		buttons: { "Close": function() { $(this).dialog("close"); } },
+		autoOpen: false,
+		bgiframe: true,
+		height: 510,
+		width: 510,
+		hide: 'normal',
+		position: 'center',
+		resizable: true,
+		modal: true,
+		open: function () {
+			$(this).scrollTop(0);
+		}
+	});
+
+     $("#<portlet:namespace/>harassmentLink").click(function() 	{
+    	 $("#<portlet:namespace/>dialog").show();  
+		 $("#<portlet:namespace/>dialog").dialog("open");        
+     });
+     
+     
+    $("#startDatepicker").datepicker({minDate: '0d', maxDate: '60d'});
+	$("#endDatepicker").datepicker({minDate: '1d', maxDate: '120d'});
+    $('#ui-datepicker-div').removeClass('ui-helper-hidden-accessible');   
+     
+     
+})(myPortletName["${n}"].jQuery);
+
+
+</script>

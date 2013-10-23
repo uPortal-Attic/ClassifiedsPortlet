@@ -20,81 +20,6 @@
 <c:set var="n"><portlet:namespace/></c:set>
 
 
-<script type="text/javascript">
-
-	var ${n}_portletName = ${n}_portletName || {}; //create a unique variable to assign our namespace too
-	${n}_portletName.jQuery = jQuery.noConflict(true); //assign jQuery to this namespace
-	var $ = ${n}_portletName.jQuery;
-
-    var addCount = 0;
-	var pageCount = 0;
-	var currPage = 0;
-
-    PageClick = function(pageclickednumber) 
-    {
-    	$("#<portlet:namespace/>pager").pager({ pagenumber: pageclickednumber, 
-    			pagecount: pageCount,
-   			  buttonClickCallback: PageClick });
-
-    	var start=(pageclickednumber-1) * ${maxAdsPerPage};
-		var end=pageclickednumber  * ${maxAdsPerPage};
-
-		if (end > addCount)
-			end = addCount;
-    	
-   		var $table = $('#<portlet:namespace/>ads');
-   		$table.find('#<portlet:namespace/>ad').hide();
-   		$table.find('#<portlet:namespace/>ad').slice(start,end).fadeIn();
-
-    }
-		
-	$(document).ready(function()
-    {
-		 var $table = $('#<portlet:namespace/>ads');
-		 addCount = $table.find('#<portlet:namespace/>ad').length;
-		 pageCount = Math.ceil(addCount / ${maxAdsPerPage});
-		 if (pageCount == 1)
-			 	{pageCount = 0};
-
-		$("#<portlet:namespace/>pager").pager
-			(
-				{ 	pagenumber: 1, 
-  			  		pagecount: pageCount, 
-  			  		buttonClickCallback: PageClick 
-  				 }
-	  		 );
- 	
-  			$("#<portlet:namespace/>ads div p").live("click", function() { 
-				$(this).next('p').slideToggle('fast'); 
-			});
-   	});
-
-    $(document).ready(function()
-    {
-    	$("#<portlet:namespace/>dialog").dialog({
-    		buttons: { "Close": function() { $(this).dialog("close"); } },
-    		autoOpen: false,
-    		bgiframe: true,
-    		height: 610,
-    		width: 540,
-    		hide: 'normal',
-    		position: 'center',
-    		resizable: true,
-    		modal: true
-    	});
-    });
-
-    $(document).ready(function() 
-    {
-         $("#<portlet:namespace/>help").click(function() 	{
-        	 $("#<portlet:namespace/>dialog").show();  
-    		$("#<portlet:namespace/>dialog").dialog("open");        
-         });
-    });
-    
-    </script>
-    
-
 <div>
 <ul id="sddm" >
    
@@ -117,7 +42,9 @@
     
     <portlet:renderURL var="myAdsURL"><portlet:param name="action" value="MyAds" /></portlet:renderURL>
     
-    <li><a href="${myAdsURL}">My Posts</a></li>
+  <c:if test="${userType != 'isGuest'}">
+      <li><a href="${myAdsURL}">My Posts</a></li>
+	</c:if> 
     <li><a href="#" id="<portlet:namespace/>help">Help</a></li>
 </ul>
 </div>
@@ -193,8 +120,76 @@
     	 ads found. </p>
 </c:if>
  
-<p> <div id="<portlet:namespace/>pager" class="pager"></div> </p>
- 
- 
-           
-								
+<p> <div id="<portlet:namespace/>pager" class="pagerGuy"></div> </p>
+
+<script type="text/javascript">
+
+	var myPortletName = myPortletName || {};
+	myPortletName["${n}"] = myPortletName["${n}"] || {};
+	myPortletName["${n}"].jQuery = jQuery.noConflict(true); 
+
+    var <portlet:namespace/>adCount = 0;
+	var <portlet:namespace/>pageCount = 0;
+
+    <portlet:namespace/>PageClick = function(pageclickednumber) 
+    {
+    		
+    	myPortletName["${n}"].jQuery("#<portlet:namespace/>pager").pager({ pagenumber: pageclickednumber, 
+    			pagecount: <portlet:namespace/>pageCount,
+   			  buttonClickCallback: <portlet:namespace/>PageClick });
+
+    	var start=(pageclickednumber-1) * ${maxAdsPerPage};
+		var end=pageclickednumber  * ${maxAdsPerPage};
+
+		if (end > <portlet:namespace/>adCount)
+			end = <portlet:namespace/>adCount;
+    	
+   		var $table = myPortletName["${n}"].jQuery('#<portlet:namespace/>ads');
+   		$table.find('#<portlet:namespace/>ad').hide();
+   		$table.find('#<portlet:namespace/>ad').slice(start,end).fadeIn();
+
+    };
+		
+	myPortletName["${n}"].jQuery(document).ready(function()    {
+		 var $table = myPortletName["${n}"].jQuery('#<portlet:namespace/>ads');
+		 <portlet:namespace/>adCount = $table.find('#<portlet:namespace/>ad').length;
+		 <portlet:namespace/>pageCount = Math.ceil(<portlet:namespace/>adCount / ${maxAdsPerPage});
+		 if (<portlet:namespace/>pageCount == 1)
+			 	{<portlet:namespace/>pageCount = 0};
+
+		myPortletName["${n}"].jQuery("#<portlet:namespace/>pager").pager
+			(
+				{ 	pagenumber: 1, 
+  			  		pagecount: <portlet:namespace/>pageCount, 
+  			  		buttonClickCallback: <portlet:namespace/>PageClick 
+  				 }
+	  		 );
+		});
+		
+	(function($){			  		 
+ 	
+   		$("#<portlet:namespace/>ads div p").live("click", function() {
+			$(this).next('p').slideToggle('fast'); 
+		});
+
+    	$("#<portlet:namespace/>dialog").dialog({
+    		buttons: { "Close": function() { $(this).dialog("close"); } },
+    		autoOpen: false,
+    		bgiframe: true,
+    		height: 610,
+    		width: 540,
+    		hide: 'normal',
+    		position: 'center',
+    		resizable: true,
+    		modal: true
+    	});
+
+   		$("#<portlet:namespace/>help").click(function() 	{
+        	 $("#<portlet:namespace/>dialog").show();  
+    		 $("#<portlet:namespace/>dialog").dialog("open");        
+         });
+    })(myPortletName["${n}"].jQuery);
+    </script>
+
+
+

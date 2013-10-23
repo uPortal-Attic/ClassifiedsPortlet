@@ -13,37 +13,98 @@
            http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
            
 	<context:annotation-config/>		           
-           
+          
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean"> 
 		<property name="dataSource" ref="dataSource"/>
 		<property name="configLocation" value="classpath:hibernate.cfg.xml"/>
 	 	<property name="hibernateProperties">
 			<props>
-				 <!-- <prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>   -->
-				  <prop key="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</prop>  
+				 <prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>   
+				 <!-- <prop key="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</prop>   -->
 			</props>
 		</property>
 	</bean>
-	
-	
-    <!-- 
-	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName">
+
+<!--
+    <bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+        <property name="jndiName" value="java:comp/env/jdbc/uPortalDB" />
+    </bean>
+-->	
+
+<!--	
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+		<property name="driverClass">
 			<value>net.sourceforge.jtds.jdbc.Driver</value>
 		</property>
-		<property name="url">
+		<property name="jdbcUrl">
 			<value>jdbc:jtds:sqlserver://localhost:1433;instance=SQLEXPRESS;databaseName=uPortal</value>
 		</property>
-		<property name="username">
-			<value>sa</value>
+		<property name="user">
+			<value>DB USER</value>
 		</property>
 		<property name="password">
 			<value>DB PASSWORD</value>
 		</property>
-	</bean>
-	-->
-	
-	
+		<property name="initialPoolSize">
+			<value>5</value>
+		</property>
+		<property name="minPoolSize">
+			<value>5</value>
+		</property>
+		<property name="maxPoolSize">
+			<value>15</value>
+		</property>
+		<property name="acquireRetryAttempts">
+			<value>30</value>
+		</property>
+		<property name="acquireIncrement">
+			<value>3</value>
+		</property>
+		<property name="idleConnectionTestPeriod">
+			<value>0</value>
+		</property>
+		<property name="maxIdleTime">
+			<value>0</value>
+		</property>
+		<property name="maxConnectionAge">
+			<value>0</value>
+		</property>
+ </bean>
+-->
+	<!-- JMX Configuration { -->
+
+<bean id="mbeanExporter" class="org.springframework.jmx.export.MBeanExporter" lazy-init="false">
+   <property name="server" ref="mbeanServerFactory"/>
+   <property name="beans">
+      <map>
+         <entry key="org.hibernate:name=Statistics"  value-ref="hibernateMBean"/>
+		<entry key="ClassifiedsPortlet:section=Persistence,name=HibernateStatistics" value-ref="hibernateStatisticsMBean"/>
+              <entry key="ClassifiedsPortlet:section=Persistence,name=DataSource" value-ref="dataSource"/>
+
+      </map>
+   </property>
+ </bean>
+
+ <bean id="hibernateStatisticsMBean" class="org.hibernate.jmx.StatisticsService">
+        <property name="statisticsEnabled" value="true"/>
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+
+
+<bean id="mbeanServerFactory" class="org.springframework.jmx.support.MBeanServerFactoryBean">
+    <property name="locateExistingServerIfPossible" value="true"/>
+</bean>
+
+<bean id="hibernateMBean" class="org.hibernate.jmx.StatisticsService">
+   <property name="sessionFactory" ref="sessionFactory"/>
+   <property name="statisticsEnabled" value="true"/>
+</bean>
+
+<!-- } JMX Configuration-->
+
+
+
 	<bean id="modelPasser" class="org.jasig.web.util.DefaultModelPasser" />
     <bean id="sessionKeyGenerator" class="org.jasig.web.util.DefaultSessionKeyGenerator" />
      <bean id="requiredAnnotationBeanPostProcessor" class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor" />
@@ -65,25 +126,25 @@
 	</bean>
 	
 	<bean id="categoryService"
-        class="edu.fortlewis.portlet.ClassifiedsPortlet.service.CategoryServiceImpl" >
+        class="org.jasig.portlet.ClassifiedsPortlet.service.CategoryServiceImpl" >
 		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
 	
 	
 	<bean id="adService"
-        class="edu.fortlewis.portlet.ClassifiedsPortlet.service.AdServiceImpl" >
+        class="org.jasig.portlet.ClassifiedsPortlet.service.AdServiceImpl" >
 		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
 
 	
 
 	<bean id="headingService"
-        class="edu.fortlewis.portlet.ClassifiedsPortlet.service.HeadingServiceImpl" >
+        class="org.jasig.portlet.ClassifiedsPortlet.service.HeadingServiceImpl" >
 		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
               
     <bean id="configService"
-        class="edu.fortlewis.portlet.ClassifiedsPortlet.service.ConfigServiceImpl" >
+        class="org.jasig.portlet.ClassifiedsPortlet.service.ConfigServiceImpl" >
 		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>          
               
@@ -126,14 +187,14 @@
 	
    <!-- purge old ads -->
 
-    <bean id="adPurgeThread" class="edu.fortlewis.portlet.ClassifiedsPortlet.service.AdGroomer" init-method="start" destroy-method="endThread">
+    <bean id="adPurgeThread" class="org.jasig.portlet.ClassifiedsPortlet.service.AdGroomer" init-method="start" destroy-method="endThread">
  	    <property name="hourToCheck" value="3"/>
     	<property name="minuteToCheck" value="0"/>
     	<property name="checkInterval" value="60"/>
      	<property name="maxCheckIntervalMillis" value="43200000"/>
      </bean>
 
-     <bean id="adminGroupService" class="edu.fortlewis.portlet.ClassifiedsPortlet.service.AdminGroupService" init-method="init" />
+     <bean id="adminGroupService" class="org.jasig.portlet.ClassifiedsPortlet.service.AdminGroupService" init-method="init" />
  
 	
 </beans>

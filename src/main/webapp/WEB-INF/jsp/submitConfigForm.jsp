@@ -10,10 +10,6 @@
 
 <script type="text/javascript">
 
-	var ${n}_portletName = ${n}_portletName || {}; 
-	${n}_portletName.jQuery = jQuery.noConflict(true); 
-	var $ = ${n}_portletName.jQuery;
-
  function validateMyForm(form)
  {	
 	return true;

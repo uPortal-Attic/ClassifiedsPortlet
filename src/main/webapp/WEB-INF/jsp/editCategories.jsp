@@ -16,6 +16,11 @@
 			</div>
 					
 	    	<c:forEach items="${categories}" var="category" varStatus="lineInfo">
+	    	
+	    	<c:set var="adCount" value="0" />
+			<c:forEach items="${category.ads}" var="adcnt" >
+				<c:set var="adCount" value="${adCount + 1}" scope="page"/>
+			</c:forEach>
 
 	    	 <c:choose>
   			 	<c:when test="${lineInfo.count % 2 == 0}">
@@ -27,7 +32,8 @@
  			</c:choose>
  	 		
  			  <c:choose>
-  				 	<c:when test="${category.adcntAll == 0}">
+ 			  		
+  				 	<c:when test="${adCount == 0}">
  						<span  class="delCol">  		
     							<a href="<portlet:actionURL portletMode="edit"><portlet:param name="action" value="deleteCategory"/>
       							<portlet:param name="actionCode" value="delete"/>
@@ -58,7 +64,9 @@
       						<img alt="edit" style="vertical-align: middle;" src="<c:url value="/images/edit.png"/>"/>
  				</a>
 				</span>
- 				<span class="adsCol"><c:out value="${category.adcntAll}"/></span>
+				
+				
+ 				<span class="adsCol"><c:out value="${adCount}"/></span>
  				<span class="nameCol"><c:out value="${category.name}"/> </span>
 
 				</div>

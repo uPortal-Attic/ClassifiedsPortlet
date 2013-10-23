@@ -11,12 +11,6 @@
 <c:set var="n"><portlet:namespace/></c:set>
 
 <script type="text/javascript">
-
-	var ${n}_portletName = ${n}_portletName || {}; 
-	${n}_portletName.jQuery = jQuery.noConflict(true); 
-	var $ = ${n}_portletName.jQuery;
-
-	var futureDate = "";
 	
     function validateMyForm(form)
     {	

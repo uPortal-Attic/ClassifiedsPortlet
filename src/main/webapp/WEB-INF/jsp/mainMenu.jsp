@@ -1,5 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="json" uri="http://www.atg.com/taglibs/json" %>
 <link rel="stylesheet" href="<c:url value="/css/classifieds.css"/>" type="text/css"></link>
 <link rel="stylesheet" href="<c:url value="/css/pager.css"/>" type="text/css"></link>
 <jsp:directive.include file="/WEB-INF/jsp/include.jsp"/>
@@ -18,49 +17,6 @@
  </c:if> 
 
 <c:set var="n"><portlet:namespace/></c:set>
-
-
-<script type="text/javascript">
-
-	var ${n}_portletName = ${n}_portletName || {}; //create a unique variable to assign our namespace too
-	${n}_portletName.jQuery = jQuery.noConflict(true); //assign jQuery to this namespace
-	var $ = ${n}_portletName.jQuery;
-	
-  
- $(document).ready(function()
-    {	
-  			$("#<portlet:namespace/>ads div p").live("click", function() { 
-				$(this).next('p').slideToggle('fast'); 
-			});
-   	});
-	
-	
-    $(document).ready(function()
-    {
-    	$("#<portlet:namespace/>dialog").dialog({
-    		buttons: { "Close": function() { $(this).dialog("close"); } },
-    		autoOpen: false,
-    		bgiframe: true,
-    		height: 610,
-    		width: 540,
-    		hide: 'normal',
-    		position: 'center',
-    		resizable: true,
-    		modal: true
-    	});
-    });
-
-    $(document).ready(function() 
-    {
-         $("#<portlet:namespace/>help").click(function() 	{
-        	 $("#<portlet:namespace/>dialog").show();  
-    		$("#<portlet:namespace/>dialog").dialog("open");        
-         });
-    });
- 
- 
-  
-    </script>
  
 <div>
 <ul id="sddm" >
@@ -82,8 +38,11 @@
     </li>
     
     <portlet:renderURL var="myAdsURL" portletMode="view"><portlet:param name="action" value="MyAds" /></portlet:renderURL>
-    
-    <li><a href="${myAdsURL}">My Posts</a></li>
+
+ <c:if test="${userType != 'isGuest'}">
+      <li><a href="${myAdsURL}">My Posts</a></li>
+	</c:if> 
+ 
     <li><a href="#" id="<portlet:namespace/>help">Help</a></li>
 </ul>
 </div>
@@ -92,48 +51,25 @@
  <div style="clear:both"></div>
  <div id="adminSpace"> </div>  
   
-<c:if test="${ not empty user }">
+<c:if test="${userType == 'isAdmin' }">
   <div id="adminURL" >
     <a  href="<portlet:renderURL portletMode="edit">
         <portlet:param name="action" value="adminMenu"/></portlet:renderURL>">
             Classifieds Administration 	
-  </a>
-</div>
+  	</a>
+	</div>
 
 </c:if> 
  
  <script type="text/javascript"> 
+
+  var lines = ${lines};
  
-
-  var lines = <json:object>
-  <json:array name="headings" var="heading" items="${headings}">
-    <json:object>
-      <json:property name="heading" value="${heading.headingname}"/>
-       <json:array name="categories" var="category" items="${heading.categories}">
-    		<json:object>
-      			<json:property name="category" value="${category.name}"/>
-      			<c:set var="url"><portlet:renderURL portletMode="view" ><portlet:param name='action' value='selectedCategory'/><portlet:param name='selectedCategory' value='${category.id}'/></portlet:renderURL></c:set> 
-      			<json:property name="url" value="${url}" />
-      			<json:property name="Adcnt" value="${category.adcnt}"/>	
-      			<json:property name="id" value="${category.id}"/>		
-    		</json:object>
-  		</json:array>
-    </json:object>
-  </json:array>
-</json:object>;
-
-
  </script>
+
+
  <script type="text/javascript">
 
-
-
- $(document).ready(function() 
- {
-         $(window).resize(function() { 
-  		       buildMenu();
-         });
-});
 
 function getRowCount()
 {
@@ -243,6 +179,40 @@ function buildMenu()
 	
 };
 buildMenu();
+
+	var myPortletName = myPortletName || {};
+	myPortletName["${n}"] = myPortletName["${n}"] || {};
+	myPortletName["${n}"].jQuery = jQuery.noConflict(true); 
+	
+	(function($){
+	
+		 $(window).resize(function() { 
+  		       buildMenu();
+         });
+  
+ 		$("#<portlet:namespace/>ads div p").live("click", function() { 
+				$(this).next('p').slideToggle('fast'); 
+		});
+	
+    	$("#<portlet:namespace/>dialog").dialog({
+    		buttons: { "Close": function() { $(this).dialog("close"); } },
+    		autoOpen: false,
+    		bgiframe: true,
+    		height: 610,
+    		width: 540,
+    		hide: 'normal',
+    		position: 'center',
+    		resizable: true,
+    		modal: true
+    	});
+
+         $("#<portlet:namespace/>help").click(function() 	{
+        	 $("#<portlet:namespace/>dialog").show();  
+    		$("#<portlet:namespace/>dialog").dialog("open");        
+         });
+ 
+ })(myPortletName["${n}"].jQuery);
+
 </script>
 
  
