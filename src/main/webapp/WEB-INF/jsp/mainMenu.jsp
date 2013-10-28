@@ -107,7 +107,7 @@ function getMaxColumnWidth()
 	return (maxColumnWidth * 7);
 }
 
-function getColumnCount()
+function getColumnCount($)
 {
 	var pageWidth = $("#<portlet:namespace/>adGrid").width();
 	
@@ -123,11 +123,11 @@ function countFormat( cnt )
 	
 	return str;	
 }	
-function buildMenu()
+function buildMenu($)
 {
 
 	$("#<portlet:namespace/>adGrid").html("");
-	var columnCnt = getColumnCount();
+	var columnCnt = getColumnCount($);
 	
 	if (columnCnt < 1)
 		columnCnt = 1;
@@ -178,16 +178,20 @@ function buildMenu()
 	}
 	
 };
-buildMenu();
 
 	var classifiedsPortlet = classifiedsPortlet || {};
 	classifiedsPortlet["${n}"] = classifiedsPortlet["${n}"] || {};
 	classifiedsPortlet["${n}"].jQuery = jQuery.noConflict(true); 
+
+
+buildMenu(classifiedsPortlet["${n}"].jQuery);
+
+	
 	
 	(function($){
 	
 		 $(window).resize(function() { 
-  		       buildMenu();
+  		       buildMenu($);
          });
   
  		$("#<portlet:namespace/>ads div p").live("click", function() { 
