@@ -180,9 +180,9 @@ function buildMenu()
 };
 buildMenu();
 
-	var myPortletName = myPortletName || {};
-	myPortletName["${n}"] = myPortletName["${n}"] || {};
-	myPortletName["${n}"].jQuery = jQuery.noConflict(true); 
+	var classifiedsPortlet = classifiedsPortlet || {};
+	classifiedsPortlet["${n}"] = classifiedsPortlet["${n}"] || {};
+	classifiedsPortlet["${n}"].jQuery = jQuery.noConflict(true); 
 	
 	(function($){
 	
@@ -211,7 +211,7 @@ buildMenu();
     		$("#<portlet:namespace/>dialog").dialog("open");        
          });
  
- })(myPortletName["${n}"].jQuery);
+ })(classifiedsPortlet["${n}"].jQuery);
 
 </script>
 

@@ -8,9 +8,9 @@
 <c:set var="n"><portlet:namespace/></c:set>
 
 <script type="text/javascript">
-	var myPortletName = myPortletName || {};
-	myPortletName["${n}"] = myPortletName["${n}"] || {};
-	myPortletName["${n}"].jQuery = jQuery.noConflict(true); 
+	var classifiedsPortlet = classifiedsPortlet || {};
+	classifiedsPortlet["${n}"] = classifiedsPortlet["${n}"] || {};
+	classifiedsPortlet["${n}"].jQuery = jQuery.noConflict(true); 
 </script>	
 
 <div id="<portlet:namespace/>confirm"  class="hidden" title="Fort Lewis Classifieds">
@@ -31,7 +31,7 @@
 	<portlet:param name="action" value="addAd"/>
 </portlet:actionURL>
 
- <form:form  name="myform" method="POST" commandName="ad" action="${postUrl}" onsubmit="return validateMyForm(this, myPortletName['${n}'].jQuery)" >
+ <form:form  name="myform" method="POST" commandName="ad" action="${postUrl}" onsubmit="return validateMyForm(this, classifiedsPortlet['${n}'].jQuery)" >
  
  <form:hidden path="id" />
 
@@ -193,7 +193,7 @@
     $('#ui-datepicker-div').removeClass('ui-helper-hidden-accessible');   
      
      
-})(myPortletName["${n}"].jQuery);
+})(classifiedsPortlet["${n}"].jQuery);
 
 
 </script>

@@ -124,9 +124,9 @@
 
 <script type="text/javascript">
 
-	var myPortletName = myPortletName || {};
-	myPortletName["${n}"] = myPortletName["${n}"] || {};
-	myPortletName["${n}"].jQuery = jQuery.noConflict(true); 
+	var classifiedsPortlet = classifiedsPortlet || {};
+	classifiedsPortlet["${n}"] = classifiedsPortlet["${n}"] || {};
+	classifiedsPortlet["${n}"].jQuery = jQuery.noConflict(true); 
 
     var <portlet:namespace/>adCount = 0;
 	var <portlet:namespace/>pageCount = 0;
@@ -134,7 +134,7 @@
     <portlet:namespace/>PageClick = function(pageclickednumber) 
     {
     		
-    	myPortletName["${n}"].jQuery("#<portlet:namespace/>pager").pager({ pagenumber: pageclickednumber, 
+    	classifiedsPortlet["${n}"].jQuery("#<portlet:namespace/>pager").pager({ pagenumber: pageclickednumber, 
     			pagecount: <portlet:namespace/>pageCount,
    			  buttonClickCallback: <portlet:namespace/>PageClick });
 
@@ -144,20 +144,20 @@
 		if (end > <portlet:namespace/>adCount)
 			end = <portlet:namespace/>adCount;
     	
-   		var $table = myPortletName["${n}"].jQuery('#<portlet:namespace/>ads');
+   		var $table = classifiedsPortlet["${n}"].jQuery('#<portlet:namespace/>ads');
    		$table.find('#<portlet:namespace/>ad').hide();
    		$table.find('#<portlet:namespace/>ad').slice(start,end).fadeIn();
 
     };
 		
-	myPortletName["${n}"].jQuery(document).ready(function()    {
-		 var $table = myPortletName["${n}"].jQuery('#<portlet:namespace/>ads');
+	classifiedsPortlet["${n}"].jQuery(document).ready(function()    {
+		 var $table = classifiedsPortlet["${n}"].jQuery('#<portlet:namespace/>ads');
 		 <portlet:namespace/>adCount = $table.find('#<portlet:namespace/>ad').length;
 		 <portlet:namespace/>pageCount = Math.ceil(<portlet:namespace/>adCount / ${maxAdsPerPage});
 		 if (<portlet:namespace/>pageCount == 1)
 			 	{<portlet:namespace/>pageCount = 0};
 
-		myPortletName["${n}"].jQuery("#<portlet:namespace/>pager").pager
+		classifiedsPortlet["${n}"].jQuery("#<portlet:namespace/>pager").pager
 			(
 				{ 	pagenumber: 1, 
   			  		pagecount: <portlet:namespace/>pageCount, 
@@ -188,7 +188,7 @@
         	 $("#<portlet:namespace/>dialog").show();  
     		 $("#<portlet:namespace/>dialog").dialog("open");        
          });
-    })(myPortletName["${n}"].jQuery);
+    })(classifiedsPortlet["${n}"].jQuery);
     </script>
 
 
